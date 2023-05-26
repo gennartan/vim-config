@@ -7,16 +7,17 @@ set shiftwidth=4
 set autoindent
 set smartindent
 set cindent
-
+set expandtab
 set foldenable
 " set foldmethod=indent
+autocmd BufWritePre * :%s/\s\+$//e
 
 set path=.,,**
 
 let g:netrw_browse_split = 3
 
 " VIM-GO
-let g:go_fmt_command = "goimports" 
+let g:go_fmt_command = "goimports"
 let g:go_auto_type_info = 1
 setlocal omnifunc=go#Complete
 
@@ -47,6 +48,17 @@ let g:workspace_session_directory = $HOME . '/.vim/sessions/'
 
 runtime ftplugin/man.vim
 
+abbreviate atrace LOG4CXX_TRACE(logger,
+abbreviate adebug LOG4CXX_DEBUG(logger,
+abbreviate ainfo LOG4CXX_INFO(logger,
+abbreviate awarn LOG4CXX_WARN(logger,
+abbreviate aerr LOG4CXX_ERROR(logger,
+
+abbreviate apdebug app_logger->log(apticomLogger::log_level::DEBUG,
+abbreviate apinfo app_logger->log(apticomLogger::log_level::INFO,
+abbreviate apwarn app_logger->log(apticomLogger::log_level::WARN,
+abbreviate aperr app_logger->log(apticomLogger::log_level::ERR,
+
 call plug#begin()
 Plug 'dense-analysis/ale'
 Plug 'fatih/vim-go'
@@ -58,5 +70,8 @@ Plug 'kien/ctrlp.vim'
 Plug 'hesselbom/vim-hsftp'
 Plug 'vim-syntastic/syntastic'
 Plug 'thaerkh/vim-workspace'
+Plug 'tpope/vim-fugitive'
+Plug 'preservim/nerdtree'
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
